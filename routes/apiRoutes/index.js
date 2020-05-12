@@ -1,8 +1,9 @@
 const router = require('express').Router();
-const { } = require
-// '/api' prepended
+const { getWorkout } = require('./../../controllers/workoutController');
 
-router.route('/workouts')
-    .get()
+
+// '/api' prepended
+router.route('/workout')
+    .get(getWorkout);
 
 module.exports = router;
