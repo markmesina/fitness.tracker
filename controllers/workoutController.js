@@ -30,5 +30,21 @@ module.exports = {
         } catch (e) {
             return res.status(403).json({ e });
         }
-    }
+    },
+    updateWorkout: async (req, res) => {
+        const { workoutId } = req.params;
+        try {
+            const workoutToUpdate = await Workout.findById(workoutId, 
+                {$push:{exercises:body} },
+                {new: true,runValidators:true });
+                
+            if(!workoutToUpdate) {
+                return res.status(401).json({ error: 'No workout with that ID' })
+            }
+            const updateWorkout = await Workout.findByIdAndUpdate(workoutId);
+            return res.status(200).json(updateWorkout);
+        } catch (e) {
+            return res.status(403).json({ e });
+        }
+    },
 };

@@ -1,13 +1,14 @@
 const router = require('express').Router();
-const { getWorkout, createWorkout, deleteWorkout } = require('../../../controllers/workoutController');
+const { getWorkout, createWorkout, deleteWorkout, updateWorkout } = require('../../../controllers/workoutController');
 
 
-// '/api/workout' prepended
-router.route('/')
+// '/api' prepended
+router.route('/workouts')
     .get(getWorkout)
     .post(createWorkout)
 
-router.route('/:workoutId')
+router.route('/workouts/:workoutId')
     .delete(deleteWorkout)
+    .put(updateWorkout)
 
 module.exports = router;
