@@ -6,6 +6,8 @@ const { getWorkout, addWorkout, deleteWorkout } = require('./../../controllers/w
 router.route('/workout')
     .get(getWorkout)
     .post(addWorkout)
+    
+router.route('/workout/:workoutId')
     .delete(deleteWorkout)
 
 module.exports = router;
