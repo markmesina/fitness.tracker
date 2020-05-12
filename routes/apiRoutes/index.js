@@ -1,13 +1,8 @@
 const router = require('express').Router();
-const { getWorkout, createWorkout, deleteWorkout } = require('./../../controllers/workoutController');
 
+const workoutRoutes = require('./workoutRoutes');
 
-// '/api' prepended
-router.route('/workout')
-    .get(getWorkout)
-    .post(createWorkout)
-
-router.route('/workout/:workoutId')
-    .delete(deleteWorkout)
+// has '/api' prepended to every route
+router.use('/workout', workoutRoutes);
 
 module.exports = router;
