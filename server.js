@@ -14,8 +14,8 @@ app.use(express.static('public'));
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
 mongoose.connect(MONGODB_URI,{  
     useNewUrlParser:true,
-    useFindAndModify:false
-    //useUnifiefdTopology: true
+    useFindAndModify:false,
+    useUnifiedTopology: true
 });
 // '/' automatically prepended
 app.use( routes );
