@@ -47,4 +47,13 @@ module.exports = {
             return res.status(403).json({ e });
         }
     },
+
+    getRange: async ({ query },res) => {
+        const range = await Workout.find({ day: { $gte: query.start, $lte: query.end } })
+        try {
+            return res.status(200).json(range)
+        } catch (e) {
+            return res.status(403).json({ e })
+        }
+    },
 };
