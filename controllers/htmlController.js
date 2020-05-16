@@ -16,3 +16,4 @@ module.exports = {
         res.sendFile(path.join(__dirname, './../public', 'stats.html'))
     },
 }
+

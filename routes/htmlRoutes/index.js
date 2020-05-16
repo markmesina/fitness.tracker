@@ -2,6 +2,8 @@ const router = require('express').Router();
 
 const htmlController = require('./../../controllers/htmlController')
 
+
+// has '/' automatically prepended to every route
 router.route('/')
     .get(htmlController.getHome);
 
