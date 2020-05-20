@@ -3,7 +3,7 @@ const { Workout } = require('./../models')
 module.exports = {
     getWorkout: async (req,res) => {
         try {
-            const workout = await Workout.find()
+            const workout = await Workout.find({})
             if(!workout) return res.status(404).json({ error: 'No workouts found '})
             return res.status(200).json(workout)
         } catch (e) {
@@ -13,7 +13,7 @@ module.exports = {
     
     createWorkout: async (req,res) => {
         try {
-            const newWorkout = await Workout.create({});
+            const newWorkout = await Workout().save();
             return res.status(200).json(newWorkout)
         } catch (e) {
             return res.status(403).json({ e });
@@ -34,13 +34,23 @@ module.exports = {
     },
     updateWorkout: async (req, res) => {
         const { workoutId } = req.params;
-        const { newWorkout } = req.body
+        const data = req.body
         try {
-            const updateWorkout = await Workout.findByIdAndUpdate(
-                workoutId, { $push:newWorkout },
+            const updatedWorkout = await Workout.findByIdAndUpdate(
+                workoutId, {$push: {exercises:  [
+                    {
+                    "type" : data.type,
+                    "name" : data.name,
+                    "duration" : data.duration,
+                    "distance" : data.distance,
+                    "weight" : data.weight,
+                    "reps" : data.reps,
+                    "sets" : data.sets
+                    }
+                ]}},
                 { new:true, runValidators: true }
             )
-        return res.status(200).json(updateWorkout)
+        return res.status(200).json(updatedWorkout)
         } catch (e) {
             return res.status(403).json({ e });
         }
