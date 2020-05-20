@@ -33,8 +33,8 @@ module.exports = {
         }
     },
     updateWorkout: async (req, res) => {
-        const { workoutId } = req.params;
-        const data = req.body
+        const { workoutId } = req.params; // which workout do u want to update id is unique
+        const data  = req.body // this is what i want to update
         try {
             const updatedWorkout = await Workout.findByIdAndUpdate(
                 workoutId, {$push: {exercises:  [
@@ -44,7 +44,7 @@ module.exports = {
                     "duration" : data.duration,
                     "distance" : data.distance,
                     "weight" : data.weight,
-                    "reps" : data.reps,
+                    "reps" : data.reps, 
                     "sets" : data.sets
                     }
                 ]}},
